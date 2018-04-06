@@ -1,0 +1,36 @@
+.form-login {
+    text-align: center;
+    color: #fff;
+    background-color: #5d4037;
+    height: 440px;
+    width: 400px;
+    position: fixed;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.login-name,
+.login-email {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-submit-btn {
+    width: 90%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*.form-login form {
+    display: inline-block;
+}
+*/
