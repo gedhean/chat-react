@@ -4,14 +4,40 @@ import Login from './Login';
 import ChatContent from './ChatContent';
 import './chatBox.css';
 
-const ChatBox = (props) => {
-    return (
-        <div className="chat-box">
-            <ChaHeader />
-            <ChatContent />
-            <Login />
-        </div>
-    )
-}
+export default class ChatBox extends React.Component {
+    constructor(props) {
+        super(props)
 
-export default ChatBox;
+        this.state = {
+            isLogged: false
+        }
+    }
+
+    setLogin = () => {
+        this.setState({
+            isLogged: true
+        }, () => {
+            window.localStorage.setItem('isLogged', 'true');
+        });
+    }
+
+    componentDidMount() {
+        const log = window.localStorage.getItem('isLogged');
+        if (log === 'true') {
+            this.setState({
+                isLogged: true
+            });
+            console.log('O usuario já logou');
+        }
+    }
+
+    render() {
+        return (
+            <div className="chat-box">
+                <ChaHeader />
+                {this.state.isLogged ? <ChatContent /> : null}
+                {!this.state.isLogged ? <Login login={this.setLogin}/> : null}
+            </div>
+        );
+    };
+}
