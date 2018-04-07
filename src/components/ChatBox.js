@@ -1,6 +1,6 @@
 import React from 'react';
 import ChaHeader from './ChaHeader';
-import ChatLogin from './ChatLogin';
+import Login from './Login';
 import ChatContent from './ChatContent';
 import './chatBox.css';
 
@@ -9,7 +9,7 @@ const ChatBox = (props) => {
         <div className="chat-box">
             <ChaHeader />
             <ChatContent />
-            <ChatLogin />
+            <Login />
         </div>
     )
 }

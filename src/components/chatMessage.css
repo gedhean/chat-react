@@ -1,0 +1,48 @@
+.msg-container {
+    border: 1px solid black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.msg-baloon {
+    max-width: 350px;
+    background-color: crimson;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.msg {
+    word-wrap: break-word;
+}
+
+.msg-time {
+    font-size: .6em;
+    font-weight: normal;
+    opacity: .8;
+    float: right;
+}
+
+.agente {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.agente .msg-baloon {
+    border-radius: 10px 10px 0px 10px;
+    background-color: brown;
+}
+
+.client {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+
+.client .msg-baloon {
+    border-radius: 10px 10px 10px 0px;
+    background-color: cornflowerblue;
+}
+

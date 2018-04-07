@@ -5,7 +5,7 @@ export default class Login extends React.Component {
     state = {
         name: '',
         email: '',
-        loginVisibility: true
+        loginVisibility: false
     }
 
     handleChange = (event) => {

@@ -1,9 +1,26 @@
 .chat-content {
     background-color: blueviolet;
-    /*position: fixed;*/
     width: 400px;
     height: 440px;
     bottom: 60px;
     right: 60px;
     border-radius: 0px 0px 5px 5px;
+}
+
+.chat-input-msg {
+    position: absolute;
+    bottom: 0px;
+    width: 380px;
+    height: 29px;
+    padding: 10px;
+    border: 0px inset;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.messages {
+    max-height: 390px;
+    background: #eadcdc;
+    height: 390px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
