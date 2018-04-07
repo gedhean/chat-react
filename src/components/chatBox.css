@@ -1,12 +1,12 @@
 .chat-box {
-    background-color: #FAFAFA;
+    background-color: #E1E2E1;
     position: fixed;
     width: 400px;
     height: 500px;
     bottom: 60px;
     right: 60px;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 20px 20px 15px 15px;
+    border-radius: 20px 20px 5px 5px;
     
     -webkit-box-shadow: -1px 10px 42px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: -1px 10px 42px 0px rgba(0, 0, 0, 0.5);

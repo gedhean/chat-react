@@ -1,0 +1,9 @@
+.chat-content {
+    background-color: blueviolet;
+    /*position: fixed;*/
+    width: 400px;
+    height: 440px;
+    bottom: 60px;
+    right: 60px;
+    border-radius: 0px 0px 5px 5px;
+}
