@@ -4,8 +4,7 @@ import './login.css';
 export default class Login extends React.Component {
     state = {
         name: '',
-        email: '',
-        loginVisibility: false
+        email: ''
     }
 
     handleChange = (event) => {
@@ -19,19 +18,21 @@ export default class Login extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.setState({
-            loginVisibility: false
-        });
         console.log('Submetido');
+        // .login is a method from  ChatBox to toggle its state `isLogged`
+        this.props.login();
+    }
+
+    componentWillUnmount() {
+       window.removeEventListener('submit', this.handleSubmit, false);
+       window.removeEventListener('change', this.handleChange, false);
     }
 
     render() {
-        return this.state.loginVisibility && (
+        return (
             <div className="form-login">
                 <h2>Login</h2>
                 <form onSubmit={this.handleSubmit}>
-                    {/* <label htmlFor="name">Nome</label>
-                    <br/> */}
                     <input
                         id="name"
                         className="login-name" 
@@ -43,8 +44,6 @@ export default class Login extends React.Component {
                         onChange={this.handleChange}
                         value={this.state.name}
                     />
-                    {/* <br/>
-                    <label htmlFor="email">E-mail</label> */}
                     <br/>
                     <input 
                         id="email"

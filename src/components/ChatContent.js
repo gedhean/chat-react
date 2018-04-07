@@ -70,7 +70,6 @@ export default class ChatContent extends React.Component {
                         name="input-msg"
                         placeholder="Sua mensagem"
                         onChange={this.handleChange}
-                    /* value={this.state.msg} */
                     />
                 </form>
             </div>
