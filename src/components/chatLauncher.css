@@ -5,8 +5,9 @@
     position: fixed;
     bottom: 30px;
     right: 35px;
-    background-color:#321911;
-    border-radius: 50%;
+    /*background-color:#321911;*/
+    background-color: #212121;
+    border-radius: 50% 50% 50% 0%;
     padding: 4px;
     cursor: pointer;
     
