@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import  store  from './redux/store/store';
 import { toggleChatBox } from './redux/actions';
 import ChatBox from './components/ChatBox';
 import ChatLauncher from './components/ChatLauncher';
