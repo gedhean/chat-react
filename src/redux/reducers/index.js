@@ -1,7 +1,8 @@
-import { SET_CHAT_BOX_VISIBILITY } from '../constants/ActionTypes';
+import { SET_CHAT_BOX_VISIBILITY, SET_LOGIN } from '../constants/ActionTypes';
 
 const initialState = {
-    isChatBoxOpen: false
+    isChatBoxOpen: false,
+    isLogged: false
 }
 
 export const chatBox = (state = initialState, action) => {
@@ -11,6 +12,11 @@ export const chatBox = (state = initialState, action) => {
                 ...state,
                 isChatBoxOpen: !state.isChatBoxOpen
             };
+        case SET_LOGIN:
+            return {
+                ...state,
+                isLogged: true
+            }
         default: 
             return state;
     }

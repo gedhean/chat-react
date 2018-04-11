@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Provider, connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import  store  from './redux/store/store';
 import { toggleChatBox } from './redux/actions';
@@ -20,18 +20,18 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
+      
         <div className="App">
           {this.props.isChatBoxOpen && <ChatBox />}
           <ChatLauncher toggleChatBox={this.props.toggleChatBox} />
         </div>
-      </Provider>
+      
     );
   }
 }
 
-const mapStateToProps = ({isChatBoxOpen}) => ({
+const mapStateToProps = ({ isChatBoxOpen }) => ({
   isChatBoxOpen
 });
 
-export default connect(mapStateToProps, {toggleChatBox})( App );
+export default connect(mapStateToProps, {toggleChatBox})(App);

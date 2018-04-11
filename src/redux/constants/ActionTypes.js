@@ -1,1 +1,3 @@
 export const SET_CHAT_BOX_VISIBILITY = 'SET_CHAT_BOX_VISIBILITY';
+
+export const SET_LOGIN = 'SET_LOGIN';
