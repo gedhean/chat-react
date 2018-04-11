@@ -11,6 +11,6 @@
     padding: 4px;
     cursor: pointer;
     
-    -webkit-transition: .8s;
-    transition: .8s;
+    -webkit-transition: .5s;
+    transition: .5s;
 }
