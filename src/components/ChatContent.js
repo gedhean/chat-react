@@ -21,14 +21,16 @@ export default class ChatContent extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.setState({
-            messages: this.state.messages.concat([
-                this.state.currentMsg
-            ])
-        }, () => {
-            this.msgInput.value = "";
-            this.msgBody.scrollTop = this.msgBody.scrollHeight;
-        });
+        if (this.msgInput.value) {
+            this.setState({
+                messages: this.state.messages.concat([
+                    this.state.currentMsg
+                ])
+            }, () => {
+                this.msgInput.value = "";
+                this.msgBody.scrollTop = this.msgBody.scrollHeight;
+            });
+        }
     }
 
     render() {
