@@ -29,8 +29,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ isChatBoxOpen }) => ({
-  isChatBoxOpen
+const mapStateToProps = (store) => ({
+  isChatBoxOpen: store.visibilityFilter.isChatBoxOpen
 });
 
 export default connect(mapStateToProps, {toggleChatBox})(App);

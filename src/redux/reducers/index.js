@@ -1,23 +1,31 @@
-import { SET_CHAT_BOX_VISIBILITY, SET_LOGIN } from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes';
 
 const initialState = {
-    isChatBoxOpen: false,
-    isLogged: false
+    isChatBoxOpen: false
 }
 
-export const chatBox = (state = initialState, action) => {
+export const visibilityFilter = (state = initialState, action) => {
     switch (action.type) {
-        case SET_CHAT_BOX_VISIBILITY:
+        case types.TOGGLE_CHAT_BOX_VISIBILITY:
             return {
                 ...state,
                 isChatBoxOpen: !state.isChatBoxOpen
             };
-        case SET_LOGIN:
+
+        default: 
+            return state;
+    }
+}
+
+export const user = (state = {isLogged: false}, action) => {
+    switch (action.type) {
+        case types.LOGIN:
             return {
                 ...state,
-                isLogged: true
-            }
-        default: 
+                isLogged: action.isLogged
+            };
+    
+        default:
             return state;
     }
 }

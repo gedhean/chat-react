@@ -1,9 +1,12 @@
 import { createStore, combineReducers} from 'redux';
 
-import { chatBox } from '../reducers';
+import { visibilityFilter, user } from '../reducers';
 
 const store = createStore(
-    chatBox,
+    combineReducers({
+        visibilityFilter,
+        user
+    }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

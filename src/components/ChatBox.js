@@ -1,40 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setLogin } from '../redux/actions';
+import { login } from '../redux/actions';
 import ChaHeader from './ChaHeader';
 import Login from './Login';
 import ChatContent from './ChatContent';
 import './chatBox.css';
 
-class ChatBox extends React.Component {
-   /*  constructor(props) {
-        super(props)
-
-        this.state = {
-            isLogged: false
-        }
-    } */
-
-   /*  setLogin = () => {
-        this.setState({
-            isLogged: true
-        }, () => {
-            window.localStorage.setItem('isLogged', 'true');
-        });
-    }
- */
+class ChatBox extends Component {
     componentDidMount() {
         const log = window.localStorage.getItem('isLogged');
-       /*  if (log === 'true') {
-            this.setState({
-                isLogged: true
-            });
-            console.log('O usuario já logou');
-        } */
         if (log === 'true') {
-            console.log('O usuario já logou2');
-            this.props.setLogin();
+            console.log('O usuario já logou');
+            this.props.login(true);
         }
     }
 
@@ -43,14 +21,14 @@ class ChatBox extends React.Component {
             <div className="chat-box">
                 <ChaHeader />
                 {this.props.isLogged ? <ChatContent /> : null}
-                {!this.props.isLogged ? <Login login={this.props.setLogin}/> : null}
+                {!this.props.isLogged ? <Login login={this.props.login}/> : null}
             </div>
         );
     };
 }
 
-const mapStateToProps = ({ isLogged }) => ({
-    isLogged
+const mapStateToProps = store => ({
+    isLogged: store.user.isLogged
 });
 
-export default connect(mapStateToProps, { setLogin })(ChatBox);
+export default connect(mapStateToProps, { login })(ChatBox);

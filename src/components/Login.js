@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { login } from '../redux/actions';
 import './login.css';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     state = {
         name: '',
         email: ''
@@ -9,18 +12,15 @@ export default class Login extends React.Component {
 
     handleChange = (event) => {
         const eventName = event.target.name;
-        if (eventName !== 'loginVisibility') {
-            this.setState({
-                [eventName]: event.target.value
-            });
-        }
+        this.setState({
+            [eventName]: event.target.value
+        });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         console.log('Submetido');
-        // .login is a method from  ChatBox to toggle its state `isLogged`
-        this.props.login();
+        this.props.login(true);
     }
 
     componentWillUnmount() {
@@ -65,3 +65,9 @@ export default class Login extends React.Component {
         );
     }
 }
+
+export default 
+    connect(
+        null,
+        { login } 
+    )(Login);
