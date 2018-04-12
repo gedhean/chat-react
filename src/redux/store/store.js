@@ -1,11 +1,12 @@
 import { createStore, combineReducers} from 'redux';
 
-import { visibilityFilter, user } from '../reducers';
+import { visibilityFilter, user, messages } from '../reducers';
 
 const store = createStore(
     combineReducers({
         visibilityFilter,
-        user
+        user,
+        messages
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

@@ -29,3 +29,13 @@ export const user = (state = {isLogged: false}, action) => {
             return state;
     }
 }
+
+export const messages = (state = [], action) => {
+    switch (action.type) {
+        case types.ADD_MESSAGE:
+            return [...state, action.message];
+    
+        default:
+            return state;
+    }
+}

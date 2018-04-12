@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { toggleChatBox } from './redux/actions';
@@ -6,31 +6,20 @@ import ChatBox from './components/ChatBox';
 import ChatLauncher from './components/ChatLauncher';
 import './App.css';
 
-class App extends Component {
-/*   state = {
-    isChatBoxOpen: false
-  }
-
-  toggleChatBox = () => {
-    this.setState({
-      isChatBoxOpen: !this.state.isChatBoxOpen
-    });
-  } */
-
-  render() {
-    return (
-      
-        <div className="App">
-          {this.props.isChatBoxOpen && <ChatBox />}
-          <ChatLauncher toggleChatBox={this.props.toggleChatBox} />
-        </div>
-      
-    );
-  }
+const App = (props) => {
+  return (
+    <div className="App">
+      {props.isChatBoxOpen && <ChatBox />}
+      <ChatLauncher toggleChatBox={props.toggleChatBox} />
+    </div>
+  );
 }
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   isChatBoxOpen: store.visibilityFilter.isChatBoxOpen
 });
 
-export default connect(mapStateToProps, {toggleChatBox})(App);
+export default connect(
+  mapStateToProps, 
+  { toggleChatBox }
+)(App);

@@ -4,7 +4,16 @@ export const toggleChatBox = () => ({
     type: types.TOGGLE_CHAT_BOX_VISIBILITY
 });
 
-export const login = (isLogged) => ({
+export const login = isLogged => ({
     type: types.LOGIN,
     isLogged
-})
+});
+
+export const addMessage = (content, time, from) => ({
+    type: types.ADD_MESSAGE,
+    message: {
+        content,
+        time,
+        from
+    }
+});

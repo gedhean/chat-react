@@ -12,7 +12,7 @@ class ChatBox extends Component {
         const log = window.localStorage.getItem('isLogged');
         if (log === 'true') {
             console.log('O usuario já logou');
-            this.props.login(true);
+            this.props.dispatch(login(true));
         }
     }
 
@@ -21,7 +21,7 @@ class ChatBox extends Component {
             <div className="chat-box">
                 <ChaHeader />
                 {this.props.isLogged ? <ChatContent /> : null}
-                {!this.props.isLogged ? <Login login={this.props.login}/> : null}
+                {!this.props.isLogged ? <Login /> : null}
             </div>
         );
     };
@@ -31,4 +31,4 @@ const mapStateToProps = store => ({
     isLogged: store.user.isLogged
 });
 
-export default connect(mapStateToProps, { login })(ChatBox);
+export default connect(mapStateToProps)(ChatBox);

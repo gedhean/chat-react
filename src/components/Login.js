@@ -10,17 +10,16 @@ class Login extends React.Component {
         email: ''
     }
 
-    handleChange = (event) => {
-        const eventName = event.target.name;
+    handleChange = event => {
         this.setState({
-            [eventName]: event.target.value
+            [event.target.name]: event.target.value
         });
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = event => {
         event.preventDefault();
-        console.log('Submetido');
         this.props.login(true);
+        console.log('Submetido');
     }
 
     componentWillUnmount() {
@@ -66,8 +65,4 @@ class Login extends React.Component {
     }
 }
 
-export default 
-    connect(
-        null,
-        { login } 
-    )(Login);
+export default connect(null, { login })(Login);
