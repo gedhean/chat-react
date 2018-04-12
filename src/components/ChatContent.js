@@ -14,20 +14,23 @@ class ChatContent extends Component {
                 time: new Date().toLocaleTimeString(),
                 from: 'client'
             }
-            this.props.addMessage(
-                msg.content, 
-                msg.time, 
-                msg.from
-            );
+            this.props.addMessage(msg.content, msg.time, msg.from);
         }
-        this.cleanIpunt();
     }
 
     cleanIpunt = () => {
         this.msgInput.value = "";
         this.msgBody.scrollTop = this.msgBody.scrollHeight;
     }
+    
+    componentDidMount() {
+        this.cleanIpunt();
+    }
 
+    componentDidUpdate() {
+        this.cleanIpunt();
+    }
+    
     render() {
         const timeNow = new Date().toLocaleTimeString();
         return (
@@ -79,8 +82,7 @@ const mapStoreToProps = store => ({
     messages: store.messages
 });
 
-export default 
-    connect(
-        mapStoreToProps,
-        { addMessage }
-    )(ChatContent);
+export default connect(
+    mapStoreToProps,
+    { addMessage }
+)(ChatContent);
