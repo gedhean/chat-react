@@ -17,9 +17,10 @@ class Login extends React.Component {
     }
 
     handleSubmit = event => {
+        const {dispatch} = this.props;
         event.preventDefault();
-        this.props.login(true);
-        console.log('Submetido');
+        dispatch(login());
+        log('Login submetido');
     }
 
     componentWillUnmount() {
@@ -65,4 +66,8 @@ class Login extends React.Component {
     }
 }
 
-export default connect(null, { login })(Login);
+export default connect(null)(Login);
+
+const log = str => {
+    console.log('At Login:', str);
+}

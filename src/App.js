@@ -20,6 +20,6 @@ const mapStateToProps = store => ({
 });
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   { toggleChatBox }
 )(App);

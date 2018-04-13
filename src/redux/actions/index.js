@@ -5,8 +5,7 @@ export const toggleChatBox = () => ({
 });
 
 export const login = isLogged => ({
-    type: types.LOGIN,
-    isLogged
+    type: types.LOGIN
 });
 
 export const addMessage = (content, time, from) => ({
