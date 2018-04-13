@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { toggleChatBox } from '../redux/actions';
 import Icons from './Icons';
 import './chatLauncher.css';
 
@@ -8,10 +11,11 @@ class ChatLauncher extends React.Component {
     }
 
     handleClick = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-        this.props.toggleChatBox();
+        const {dispatch} = this.props;
+        this.setState(prevState => ({
+            isOpen: !prevState.isOpen
+        }));
+        dispatch(toggleChatBox());
     }
 
     render () {        
@@ -27,4 +31,4 @@ class ChatLauncher extends React.Component {
     }
 }
 
-export default ChatLauncher;
+export default connect(null)(ChatLauncher);

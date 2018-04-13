@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { toggleChatBox } from './redux/actions';
 import ChatBox from './components/ChatBox';
 import ChatLauncher from './components/ChatLauncher';
 import './App.css';
 
-const App = (props) => {
+const App = props => {
+  const {isChatBoxOpen} = props;
   return (
     <div className="App">
-      {props.isChatBoxOpen && <ChatBox />}
-      <ChatLauncher toggleChatBox={props.toggleChatBox} />
+      {isChatBoxOpen && <ChatBox />}
+      <ChatLauncher />
     </div>
   );
 }
@@ -20,6 +20,5 @@ const mapStateToProps = store => ({
 });
 
 export default connect(
-  mapStateToProps,
-  { toggleChatBox }
+  mapStateToProps
 )(App);

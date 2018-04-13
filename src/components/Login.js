@@ -17,8 +17,9 @@ class Login extends React.Component {
     }
 
     handleSubmit = event => {
-        const {dispatch} = this.props;
         event.preventDefault();
+        const {dispatch} = this.props;
+        window.localStorage.setItem('isLogged', 'true');
         dispatch(login());
         log('Login submetido');
     }
@@ -67,7 +68,7 @@ class Login extends React.Component {
 }
 
 export default connect(null)(Login);
-
+//Debbug
 const log = str => {
     console.log('At Login:', str);
 }

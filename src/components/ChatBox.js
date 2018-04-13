@@ -8,27 +8,32 @@ import ChatContent from './ChatContent';
 import './chatBox.css';
 
 class ChatBox extends Component {
-    componentDidMount() {
-        const log = window.localStorage.getItem('isLogged');
-        if (log === 'true') {
-            console.log('O usuario já logou');
-            this.props.dispatch(login(true));
-        }
+  componentDidMount() {
+    const logged = window.localStorage.getItem('isLogged');
+    if (logged === 'true') {
+      const {dispatch} = this.props;
+      dispatch(login());
+      log('O usuario já logou');
     }
+  }
 
-    render() {
-        return (
-            <div className="chat-box">
-                <ChaHeader />
-                {this.props.isLogged ? <ChatContent /> : null}
-                {!this.props.isLogged ? <Login /> : null}
-            </div>
-        );
-    };
+  render() {
+    const { isLogged } = this.props;
+    return (
+      <div className="chat-box">
+        <ChaHeader />
+        {isLogged ? <ChatContent /> : <Login />}
+      </div>
+    );
+  };
 }
 
 const mapStateToProps = store => ({
-    isLogged: store.user.isLogged
+  isLogged: store.user.isLogged
 });
 
 export default connect(mapStateToProps)(ChatBox);
+//Debug
+const log = str => {
+  console.log('At ChatBox:', str);
+}
