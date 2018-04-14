@@ -10,14 +10,15 @@ var socket = io('http://localhost:8000');
 
 class ChatContent extends Component {
   componentDidMount() {
-    socket.removeAllListeners(); //That line is really important!!
+
     const {dispatch} = this.props;
+    socket.removeAllListeners(); //That line is really important!!
     socket.on('connect', log('Client connected o/'));
     socket.on('disconnect', reason => {
       log('Client disconnected: '+reason)
     }); 
     socket.on('connect_error', error => {
-      console.error('Connection erro: ', error);
+      log('Connection erro: ', error);
     });
     socket.on('agente message', msg => {
       dispatch(addMessage(msg.content, msg.time, 'agente'));
