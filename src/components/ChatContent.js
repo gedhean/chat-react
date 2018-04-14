@@ -12,7 +12,7 @@ class ChatContent extends Component {
   componentDidMount() {
     socket.removeAllListeners(); //That line is really important!!
     const {dispatch} = this.props;
-    socket.on('connect', log('Client connected'));
+    socket.on('connect', log('Client connected o/'));
     socket.on('disconnect', reason => {
       log('Client disconnected: '+reason)
     }); 
