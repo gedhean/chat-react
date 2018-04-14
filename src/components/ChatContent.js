@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
 
 import { addMessage } from '../redux/actions';
 import ChatMessage from './ChatMessage';
 import './chatContent.css';
 
+var socket = io('http://localhost:8000');
+
 class ChatContent extends Component {
+  componentDidMount() {
+    socket.removeAllListeners(); //That line is really important!!
+    const {dispatch} = this.props;
+    socket.on('connect', log('Client connected'));
+    socket.on('disconnect', reason => {
+      log('Client disconnected: '+reason)
+    }); 
+    socket.on('connect_error', error => {
+      console.error('Connection erro: ', error);
+    });
+    socket.on('agente message', msg => {
+      dispatch(addMessage(msg.content, msg.time, 'agente'));
+    });
+    this.cleanIpunt();
+  }
+  
   handleSubmit = event => {
     event.preventDefault();
     const {dispatch} = this.props;
@@ -16,16 +35,13 @@ class ChatContent extends Component {
         from: 'client'
       }
       dispatch(addMessage(msg.content, msg.time, msg.from));
+      socket.emit('client message', msg);
     }
   }
 
   cleanIpunt = () => {
     this.msgInput.value = "";
     this.msgBody.scrollTop = this.msgBody.scrollHeight;
-  }
-
-  componentDidMount() {
-    this.cleanIpunt();
   }
 
   componentDidUpdate() {
@@ -84,3 +100,7 @@ const mapStoreToProps = store => ({
 });
 
 export default connect(mapStoreToProps)(ChatContent);
+//Debug log
+const log = str => {
+  console.log('At ChatContent: ', str);
+}
