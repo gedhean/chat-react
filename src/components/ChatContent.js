@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
+import _ from 'lodash';
 
 import { addMessage } from '../redux/actions';
 import ChatMessage from './ChatMessage';
 import './chatContent.css';
+import genId from '../helpers/idGenerator';
 
 var socket = io('http://localhost:8000');
 
@@ -21,7 +23,7 @@ class ChatContent extends Component {
       log('Connection erro: ', error);
     });
     socket.on('agente message', msg => {
-      dispatch(addMessage(msg.content, msg.time, 'agente'));
+      dispatch(addMessage(msg.msgId, msg.content, msg.createAt, 'agente'));
     });
     this.cleanIpunt();
   }
@@ -31,11 +33,12 @@ class ChatContent extends Component {
     const {dispatch} = this.props;
     if (this.msgInput.value) {
       let msg = {
+        msgId: genId(),
         content: this.msgInput.value,
-        time: new Date().toLocaleTimeString(),
+        createAt: new Date().toLocaleTimeString(),
         from: 'client'
-      }
-      dispatch(addMessage(msg.content, msg.time, msg.from));
+      };  
+      dispatch(addMessage(msg.msgId, msg.content, msg.createAt, "client"));
       socket.emit('client message', msg);
     }
   }
@@ -51,6 +54,7 @@ class ChatContent extends Component {
 
   render() {
     const timeNow = new Date().toLocaleTimeString();
+    const { messages } = this.props;
     return (
       <div className="chat-content">
         <div className="messages" ref={(body) => { this.msgBody = body; }}>
@@ -70,11 +74,11 @@ class ChatContent extends Component {
             from={"agente"}
           />
           {
-            this.props.messages.map((msg, key) => (
+            _.values(messages).map((msg, key) => (
               <ChatMessage
                 key={key}
                 msg={msg.content}
-                time={msg.time}
+                time={msg.createAt}
                 from={msg.from}
               />
             ))

@@ -30,10 +30,12 @@ export const user = (state = { isLogged: false }, action) => {
   }
 }
 
-export const messages = (state = [], action) => {
+export const messages = (state = { }, action) => {
   switch (action.type) {
     case types.ADD_MESSAGE:
-      return [...state, action.message];
+      return {...state, 
+        [action.msgId.msgId] : action.msgId
+      };
 
     default:
       return state;

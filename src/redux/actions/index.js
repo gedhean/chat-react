@@ -8,11 +8,12 @@ export const login = isLogged => ({
     type: types.LOGIN
 });
 
-export const addMessage = (content, time, from) => ({
+export const addMessage = (msgId, content, createAt, from) => ({
     type: types.ADD_MESSAGE,
-    message: {
+    msgId: {
+        msgId,
         content,
-        time,
+        createAt,
         from
     }
 });
