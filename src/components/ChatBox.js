@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import { login } from '../redux/actions';
-import ChaHeader from './ChaHeader';
-import Login from './Login';
-import ChatContent from './ChatContent';
-import './chatBox.css';
+import ChaHeader from "./ChaHeader";
+import Login from "./Login";
+import ChatContent from "./ChatContent";
+import "./chatBox.css";
 
 class ChatBox extends Component {
   render() {
@@ -16,7 +15,7 @@ class ChatBox extends Component {
         {isLogged ? <ChatContent /> : <Login />}
       </div>
     );
-  };
+  }
 }
 
 const mapStateToProps = store => ({
@@ -26,5 +25,5 @@ const mapStateToProps = store => ({
 export default connect(mapStateToProps)(ChatBox);
 //Debug
 const log = str => {
-  console.log('At ChatBox:', str);
-}
+  console.log("At ChatBox:", str);
+};

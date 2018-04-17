@@ -1,7 +1,7 @@
 import React from 'react';
 import './chatHeader.css';
 
-const ChatHeader = (props) => {
+const ChatHeader = () => {
     return (
         <div className="chat-header">
             React Chat by Jedi
