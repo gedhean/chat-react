@@ -19,7 +19,7 @@ class ChatLauncher extends React.Component {
   };
 
   render() {
-    const {isOpen} = this.state;
+    const { isOpen } = this.state;
     return (
       <div
         className="chat-launcher"
