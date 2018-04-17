@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import io from 'socket.io-client';
 import _ from 'lodash';
 
 import { addMessage } from '../redux/actions';
@@ -8,17 +7,17 @@ import ChatMessage from './ChatMessage';
 import './chatContent.css';
 import genId from '../helpers/idGenerator';
 
-var socket = io('http://localhost:8000');
-
 class ChatContent extends Component {
   componentDidMount() {
+    const { dispatch, socket } = this.props;
 
-    const {dispatch} = this.props;
-    socket.removeAllListeners(); //That line is really important!!
-    socket.on('connect', log('Client connected o/'));
+    if (!socket) {log('Socket undefined')}
+
+    //socket.removeAllListeners(); //That line is really important!!
+    socket.on('connect', log(`Client connected o/. ${socket.connected}`));
     socket.on('disconnect', reason => {
-      log('Client disconnected: '+reason)
-    }); 
+      log('Client disconnected: ' + reason)
+    });
     socket.on('connect_error', error => {
       log('Connection erro: ', error);
     });
@@ -27,29 +26,32 @@ class ChatContent extends Component {
     });
     this.cleanIpunt();
   }
-  
+
   handleSubmit = event => {
     event.preventDefault();
-    const {dispatch} = this.props;
-    if (this.msgInput.value) {
+    const { dispatch, socket } = this.props;
+    if (this.msgInput.value && socket.connected) {
       let msg = {
         msgId: genId(),
         content: this.msgInput.value,
         createAt: new Date().toLocaleTimeString(),
         from: 'client'
-      };  
+      };
       dispatch(addMessage(msg.msgId, msg.content, msg.createAt, "client"));
       socket.emit('client message', msg);
+    } else {
+      log(`There's no connection up or chat input is blank.`)
     }
+    this.cleanIpunt();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.cleanIpunt()
   }
 
   cleanIpunt = () => {
     this.msgInput.value = "";
     this.msgBody.scrollTop = this.msgBody.scrollHeight;
-  }
-
-  componentDidUpdate() {
-    this.cleanIpunt();
   }
 
   render() {
@@ -101,7 +103,8 @@ class ChatContent extends Component {
 }
 
 const mapStoreToProps = store => ({
-  messages: store.messages
+  messages: store.messages,
+  socket: store.socketIO.socket
 });
 
 export default connect(mapStoreToProps)(ChatContent);

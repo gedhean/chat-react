@@ -8,15 +8,6 @@ import ChatContent from './ChatContent';
 import './chatBox.css';
 
 class ChatBox extends Component {
-  componentDidMount() {
-    const logged = window.localStorage.getItem('isLogged');
-    if (logged === 'true') {
-      const {dispatch} = this.props;
-      dispatch(login());
-      log('O usuario já logou');
-    }
-  }
-
   render() {
     const { isLogged } = this.props;
     return (

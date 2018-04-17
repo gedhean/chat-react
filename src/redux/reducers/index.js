@@ -41,3 +41,15 @@ export const messages = (state = { }, action) => {
       return state;
   }
 }
+
+export const socketIO = (state = null, action) => {
+  switch (action.type) {
+    case types.SET_SOCKET:
+      return {
+        socket: action.socket
+      };
+  
+    default:
+      return state;
+  }
+}

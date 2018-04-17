@@ -1,13 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
 
-import { login } from '../redux/actions';
+import { login, setSocket } from '../redux/actions';
 import './login.css';
+
+/**
+ * The socket MUST be instantiated outside the componentes!
+ */
+const SOCKET = io('http://localhost:8000');
+const localStorage = window.localStorage;
 
 class Login extends React.Component {
     state = {
         name: '',
         email: ''
+    }
+
+    componentDidMount() {
+        const logged = localStorage.getItem('isLogged');
+        if (logged === 'true') {
+            log('O usuario já logou');
+            const { dispatch } = this.props;
+            dispatch(setSocket(SOCKET));
+            dispatch(login());
+        } else {
+            log(`User must login!`)
+        }
     }
 
     handleChange = event => {
@@ -18,15 +37,19 @@ class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const {dispatch} = this.props;
-        window.localStorage.setItem('isLogged', 'true');
+        localStorage.setItem('isLogged', 'true');
+        
+        const { dispatch } = this.props;
+        
+        dispatch(setSocket(SOCKET));
         dispatch(login());
+        
         log('Login submetido');
     }
 
     componentWillUnmount() {
-       window.removeEventListener('submit', this.handleSubmit, false);
-       window.removeEventListener('change', this.handleChange, false);
+        window.removeEventListener('submit', this.handleSubmit, false);
+        window.removeEventListener('change', this.handleChange, false);
     }
 
     render() {
@@ -36,29 +59,29 @@ class Login extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input
                         id="name"
-                        className="login-name" 
-                        type="text" 
-                        name="name" 
-                        autoFocus 
+                        className="login-name"
+                        type="text"
+                        name="name"
+                        autoFocus
                         required
                         placeholder="Seu nome"
                         onChange={this.handleChange}
                         value={this.state.name}
                     />
-                    <br/>
-                    <input 
+                    <br />
+                    <input
                         id="email"
                         className="login-email"
-                        type="email" 
-                        name="email" 
+                        type="email"
+                        name="email"
                         required
                         placeholder="Email"
                         onChange={this.handleChange}
                         value={this.state.email}
                     />
-                    <br/>
+                    <br />
                     <button
-                        className="login-submit-btn" 
+                        className="login-submit-btn"
                         type="submit"
                     >Entrar</button>
                 </form>

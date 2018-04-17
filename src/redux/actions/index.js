@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes';
+import { Socket } from 'dgram';
 
 export const toggleChatBox = () => ({
     type: types.TOGGLE_CHAT_BOX_VISIBILITY
@@ -17,3 +18,8 @@ export const addMessage = (msgId, content, createAt, from) => ({
         from
     }
 });
+
+export const setSocket = socket => ({
+    type: types.SET_SOCKET,
+    socket
+})
