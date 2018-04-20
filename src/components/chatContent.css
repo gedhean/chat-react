@@ -35,14 +35,12 @@
 
 .messages::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    -webkit-border-radius: 10px;
     border-radius: 10px;
 }
 
 /* Handle */
 
 .messages::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
     border-radius: 10px;
     background: rgba(50, 25, 17, 0.78);
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
